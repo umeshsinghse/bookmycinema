@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/bmcdb?createTableIfNotExists=true
+    username: root
+    password: root
+  sql:
+    init:
+      mode: always
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+
+user-service:
+  openapi:
+    dev-url: http://localhost:8080
+springdoc:
+  swagger-ui:
+    path: /user-service/v3/api-docs
+    tryItOutEnabled: true
+    filter: true
+  api-docs:
+    path: /user-service/v3/api-docs

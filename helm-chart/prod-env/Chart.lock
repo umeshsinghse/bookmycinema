@@ -1,0 +1,15 @@
+dependencies:
+- name: common-service
+  repository: file://../common-service
+  version: 0.1.0
+- name: accounts-service
+  repository: file://../accounts-service
+  version: 0.1.0
+- name: cards-service
+  repository: file://../cards-service
+  version: 0.1.0
+- name: loans-service
+  repository: file://../loans-service
+  version: 0.1.0
+digest: sha256:65364e5d9a8a369a945bb4682a90471a8ad3df570ba0caf318e367365bfcaa67
+generated: "2024-07-23T01:38:44.201606141+05:30"

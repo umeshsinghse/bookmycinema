@@ -1,0 +1,20 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deploymentName: movie-deployment
+serviceName: movie-service
+appLabel: movie-service
+appName: movie-service
+
+replicaCount: 1
+
+image:
+  repository: umeshsingh123/movie-service
+  tag: s4
+
+containerPort: 8084
+
+service:
+  type: NodePort
+  port: 8084
+  targetPort: 8084

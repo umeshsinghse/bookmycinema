@@ -1,0 +1,6 @@
+dependencies:
+- name: common-service
+  repository: file://../common-service
+  version: 0.1.0
+digest: sha256:fe43e17cd33134f99494a0bf9d1e04fe05582283d080993327fe93add8ad9979
+generated: "2024-07-23T01:27:40.820818715+05:30"

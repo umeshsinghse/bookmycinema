@@ -1,0 +1,20 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deploymentName: authentication-deployment
+serviceName: authentication-service
+appLabel: authentication-service
+appName: authentication-service
+
+replicaCount: 1
+
+image:
+  repository: umeshsingh123/authentication-service
+  tag: s4
+
+containerPort: 9001
+
+service:
+  type: NodePort
+  port: 9001
+  targetPort: 9001

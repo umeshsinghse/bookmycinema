@@ -1,0 +1,30 @@
+{{- define "common-service.deployment" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploymentName }}
+  labels:
+    app: {{ .Values.appLabel }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.appLabel }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appLabel }}
+    spec:
+      containers:
+      - name: {{ .Values.appLabel }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+          protocol: TCP
+        env:
+        {{- if .Values.appname_enabled }}
+        - name: SPRING_APPLICATION_NAME
+          value: {{ .Values.appName }}
+        {{- end }}
+        
+{{- end -}}

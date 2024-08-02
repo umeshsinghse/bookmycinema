@@ -1,0 +1,20 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deploymentName: ticket-deployment
+serviceName: ticket-service
+appLabel: ticket-service
+appName: ticket-service
+
+replicaCount: 1
+
+image:
+  repository: umeshsingh123/ticket-service
+  tag: s4
+
+containerPort: 8081
+
+service:
+  type: NodePort
+  port: 8081
+  targetPort: 8081

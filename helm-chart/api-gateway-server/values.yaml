@@ -1,0 +1,20 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+deploymentName: api-gateway-server-deployment
+serviceName: api-gateway-server
+appLabel: api-gateway-server
+appName: api-gateway-server
+
+replicaCount: 1
+
+image:
+  repository: umeshsingh123/api-gateway-server
+  tag: s4
+
+containerPort: 8080
+
+service:
+  type: NodePort
+  port: 8080
+  targetPort: 8080
