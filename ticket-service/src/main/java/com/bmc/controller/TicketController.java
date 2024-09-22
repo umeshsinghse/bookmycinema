@@ -17,7 +17,7 @@ public class TicketController {
     @PostMapping("/ticket")
     public ResponseEntity<TicketResponseDto> bookTicket(@RequestBody TicketRequestDto ticketRequestDto){
         try{
-            TicketResponseDto response =  ticketService.bookTicket(ticketRequestDto);
+            TicketResponseDto response =  ticketService.bookTicketWithDiscount(ticketRequestDto);
             response.setResponseMessage("Ticket booked successfully");
             return new ResponseEntity<>(response, HttpStatus.OK);
         }catch (Exception e){
@@ -43,7 +43,6 @@ public class TicketController {
     {
         ticketService.delete(id);
     }
-    //creating post mapping that post the ticket detail in the database
     //creating put mapping that updates the ticket detail
     @PutMapping("/ticket")
     public Ticket update(@RequestBody Ticket ticket)

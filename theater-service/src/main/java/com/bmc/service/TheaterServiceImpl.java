@@ -17,18 +17,51 @@ public class TheaterServiceImpl implements TheaterService {
     @Autowired
     private TheaterRepository theaterRepository;
 
-    @Override
-    public String addTheater(TheaterEntryDto theaterEntryDto){
 
+    @Override
+    public Theater createTheater(TheaterEntryDto theaterEntryDto) {
         //Entity that saves into the db
         //Convert the entryDto --> Entity and then save it
         Theater theater = TheaterTransformers.convertDtoToEntity(theaterEntryDto);
-        theaterRepository.save(theater);
-
-        return "Theater Added succesfully";
+        return theaterRepository.save(theater);
     }
+
+    // Get all theaters
     @Override
-    public String addTheaterSeats(TheaterSeatsEntryDto theaterSeatsEntryDto){
+    public List<Theater> getAllTheaters() {
+        return theaterRepository.findAll();
+    }
+
+    // Get theater by ID
+    @Override
+    public Theater getTheaterById(Long id) {
+        return theaterRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Theater not found with id " + id));
+    }
+
+    // Update theater details
+    @Override
+    public Theater updateTheater(Long id, TheaterEntryDto theaterEntryDto) {
+        Theater theater = getTheaterById(id);
+
+        theater.setName(theaterDetails.getName());
+        theater.setCity(theaterDetails.getCity());
+        theater.setAddress(theaterDetails.getAddress());
+        theater.setNumberOfScreens(theaterDetails.getNumberOfScreens());
+        theater.setAvailableShows(theaterDetails.getAvailableShows());
+
+        return theaterRepository.save(theater);
+    }
+
+    // Delete theater by ID
+    @Override
+    public void deleteTheater(Long id) {
+        Theater theater = getTheaterById(id);
+        theaterRepository.delete(theater);
+    }
+
+    @Override
+    public String addTheaterSeats(TheaterSeatsEntryDto theaterSeatsEntryDto) {
 
         //We need to save the TheaterSeat Entity
         int columns = theaterSeatsEntryDto.getNoOfSeatsIn1Row();
@@ -41,20 +74,20 @@ public class TheaterServiceImpl implements TheaterService {
 
         List<TheaterSeat> theaterSeatList = theater.getTheaterSeatList();
 
-        System.out.println("The value of noOfPremium Seats"+noOfPremiumSeats);
+        System.out.println("The value of noOfPremium Seats" + noOfPremiumSeats);
 
         int counter = 1;
         char ch = 'A';
 
         //this is done for the classic seats
-        for(int count = 1;count<=noOfClassicSeats;count++){
+        for (int count = 1; count <= noOfClassicSeats; count++) {
 
-            String seatNo = counter+"";
+            String seatNo = counter + "";
             seatNo = seatNo + ch;
 
             ch++;
 
-            if((ch-'A')==columns){
+            if ((ch - 'A') == columns) {
                 ch = 'A';
                 counter++;
             }
@@ -71,11 +104,11 @@ public class TheaterServiceImpl implements TheaterService {
         }
 
         //Lets to the same for the premium seats
-        for(int count=1;count<=noOfPremiumSeats;count++){
-            String seatNo = counter+"";
+        for (int count = 1; count <= noOfPremiumSeats; count++) {
+            String seatNo = counter + "";
             seatNo = seatNo + ch;
             ch++;
-            if((ch-'A')==columns){
+            if ((ch - 'A') == columns) {
                 ch = 'A';
                 counter++;
             }
@@ -85,7 +118,7 @@ public class TheaterServiceImpl implements TheaterService {
             theaterSeat.setSeatNo(seatNo);
             //This is the bidirectional mapping...storing the child entity
             //in the parent entity
-            System.out.println("The seatNo is "+seatNo);
+            System.out.println("The seatNo is " + seatNo);
             theaterSeatList.add(theaterSeat);
         }
 

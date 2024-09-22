@@ -125,7 +125,6 @@ public class AuthController {
 		else
 			return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
 	}
-
 	private ResponseEntity<Response> errorResponse(List<ObjectError> errors) {
 		String errorMsg = errors.stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining(". "));
 		return new ResponseEntity<>(Response.builder().status("error").message(errorMsg).build(),

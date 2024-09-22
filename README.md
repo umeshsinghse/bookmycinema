@@ -6,8 +6,6 @@ The Book My Cinema project is a Spring Boot implementation of the backend APIs f
 ## Features
 * **Api Gateway:** All api is routing through spring cloud gateway.
 * **Authentication servie:** Centralized authentication server with implmententation of JWT (Register,Tokent and Validate).
-* **Movie Management:** Admin users can add, edit, and remove movie from the system.
-* **Theater Management:** Admin users can add, allocate seats, edit, and remove Theaters from the system.
 * **User Registration:** Users can create an account, log in, and manage their profile information.
 * **Movie Management:** Admin users can add, edit, and remove movie from the system.
 * **Theater Management:** Admin users can add, allocate seats, edit, and remove Theaters from the system.
